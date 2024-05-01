@@ -4,14 +4,6 @@
 
 This is an official javascript based sdk's for LogHammer integration.
 
-## Using this example
-
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
-
 ### Packages
 
 - `@loghammer/base-sdk`: This package is base Loghammer SDK. All of the other packages using this package as core.
