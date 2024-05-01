@@ -1,0 +1,9 @@
+{
+  "extends": "@loghammer-sdk/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "./dist"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

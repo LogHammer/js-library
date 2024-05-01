@@ -1,0 +1,6 @@
+{
+  "extends": "@loghammer-sdk/typescript-config/base.json",
+  "exclude": [
+    "node_modules"
+  ]
+}

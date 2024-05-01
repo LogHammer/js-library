@@ -1,0 +1,37 @@
+{
+  "name": "@loghammer/nodejs-sdk",
+  "version": "0.0.1",
+  "description": "Loghammer nodejs sdk",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "./dist/index.mjs",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "publish-package": "npm run build && npm publish --access public",
+    "start": "ts-node index.ts"
+  },
+  "keywords": [
+    "loghammer",
+    "log management",
+    "error tracking"
+  ],
+  "author": {
+    "name": "Loghammer",
+    "url": "https://loghammer.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.2",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.3",
+    "@loghammer-sdk/typescript-config": "*"
+  },
+  "dependencies": {
+    "js-base64": "^3.7.7",
+    "@loghammer/base-sdk": "0.0.1"
+  }
+}

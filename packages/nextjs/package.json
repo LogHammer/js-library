@@ -1,0 +1,40 @@
+{
+  "name": "@loghammer/nextjs-sdk",
+  "version": "0.3.4",
+  "description": "Loghammer nextjs sdk",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "./dist/index.mjs",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "publish-package": "npm run build && npm publish --access public",
+    "start": "ts-node index.ts"
+  },
+  "keywords": [
+    "loghammer",
+    "log management",
+    "error tracking"
+  ],
+  "author": {
+    "name": "Loghammer",
+    "url": "https://loghammer.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@loghammer-sdk/typescript-config": "*",
+    "@types/react": "^18.3.1",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "@loghammer/base-sdk": "0.0.2",
+    "js-base64": "^3.7.7"
+  },
+  "peerDependencies": {
+    "next": ">=13.0.0",
+    "react": "^18.0.0-0",
+    "react-dom": "^18.0.0-0"
+  }
+}
