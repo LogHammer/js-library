@@ -25,6 +25,9 @@ export function LoghammerWrapper(props: LoghammerWrapperProps) {
 
     async function errorHandler(message: any, params: any) {
         const error = Error(message)
+        if(error.message.includes("An error occurred in the Server Components render.")){
+            return true
+        }
         if (message) {
             await createErrorLog(JSON.parse(JSON.stringify({
                 message: error.message,
