@@ -33,7 +33,10 @@ export function registerGlobalErrorHandling(tags: Array<string>) {
         await instance?.createErrorLog({
             message: error.message,
             stackTrace: error.stack,
-            tags: tags
+            tags: tags,
+            env: {
+                os: getOS()
+            }
         })
     })
 }
