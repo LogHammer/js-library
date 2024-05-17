@@ -55,6 +55,10 @@ type Env = {
     ram?: {
         total?: number,
         free?: number,
+    },
+    browser?: {
+        name?: string,
+        version?: string
     }
 }
 

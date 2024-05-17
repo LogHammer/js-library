@@ -1,6 +1,6 @@
 {
   "name": "@loghammer/nextjs-sdk",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Loghammer nextjs sdk",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,7 +29,8 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "@loghammer/base-sdk": "0.0.2",
+    "@loghammer/base-sdk": "0.0.3",
+    "bowser": "^2.11.0",
     "js-base64": "^3.7.7"
   },
   "peerDependencies": {

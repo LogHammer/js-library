@@ -1,4 +1,5 @@
 import { Loghammer, LoghammerErrorLogProps, LoghammerInfoLogProps, LoghammerTrackLogProps } from "@loghammer/base-sdk"
+import os from "os"
 
 let instance: Loghammer | null = null
 
@@ -44,7 +45,23 @@ async function errorHandler(message: any, params: any) {
             message: error.message,
             stackTrace: error.stack,
             tags: ["global-handler"],
+            env: {
+                os: getOS()
+            }
         })
     }
     return true
+}
+
+function getOS(){
+    const defaultOS = os.platform()
+    let result : "windows" | "macos" | "linux" | "other" = "other"
+    if(defaultOS === "darwin"){
+        result = "macos"
+    }else if(defaultOS === "win32"){
+        result = "windows"
+    }else if(defaultOS === "linux"){
+        result = "linux"
+    }
+    return result
 }

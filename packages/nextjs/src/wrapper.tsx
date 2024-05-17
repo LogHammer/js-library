@@ -1,6 +1,7 @@
 "use client"
-import { Fragment, ReactNode, useEffect } from "react"
+import { Fragment, ReactNode, useEffect, version } from "react"
 import { createErrorLog } from "./actions"
+import * as Bowser from "bowser"
 
 type LoghammerWrapperProps = {
     children: ReactNode | Array<ReactNode>
@@ -29,9 +30,19 @@ export function LoghammerWrapper(props: LoghammerWrapperProps) {
             return true
         }
         if (message) {
+            const envInfo = Bowser.getParser(window.navigator.userAgent);
+            const os = envInfo.getOS().name?.toLowerCase()
+            const browser = envInfo.getBrowser()
             await createErrorLog(JSON.parse(JSON.stringify({
                 message: error.message,
                 stackTrace: error.stack,
+                env: {
+                    os: os || "other",
+                    browser: {
+                        name: browser.name,
+                        version: browser.version
+                    }
+                },
                 tags: ["browser", "client-side"],
                 request: { "pathname": document.location.pathname, "origin": document.location.origin }
             })))
