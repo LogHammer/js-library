@@ -14,6 +14,8 @@ export type LoghammerErrorLogProps = {
     request?: { [key: string]: any }
     // HTTP response
     response?: { [key: string]: any }
+    // More information about this log
+    data?: { [key: string]: any }
     // Enviroment info where your app runs
     env?: Env
     // Tags
