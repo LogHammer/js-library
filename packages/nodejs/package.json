@@ -1,6 +1,6 @@
 {
   "name": "@loghammer/nodejs-sdk",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Loghammer nodejs sdk",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -24,14 +24,14 @@
   },
   "license": "ISC",
   "devDependencies": {
+    "@loghammer-sdk/typescript-config": "*",
     "@types/node": "^20.12.2",
     "ts-node": "^10.9.2",
     "tsup": "^8.0.2",
-    "typescript": "^5.4.3",
-    "@loghammer-sdk/typescript-config": "*"
+    "typescript": "^5.4.3"
   },
   "dependencies": {
-    "js-base64": "^3.7.7",
-    "@loghammer/base-sdk": "0.0.4"
+    "@loghammer/base-sdk": "^0.0.6",
+    "js-base64": "^3.7.7"
   }
 }

@@ -1,5 +1,5 @@
 import { Loghammer, LoghammerErrorLogProps, LoghammerInfoLogProps, LoghammerTrackLogProps } from "@loghammer/base-sdk"
-import os from "os"
+import os, { version } from "os"
 
 let instance: Loghammer | null = null
 
@@ -35,7 +35,10 @@ export function registerGlobalErrorHandling(tags: Array<string>) {
             stackTrace: error.stack,
             tags: tags,
             env: {
-                os: getOS()
+                os: {
+                    type: getOS() as any,
+                    version: os.version()
+                }
             }
         })
     })
@@ -49,7 +52,10 @@ async function errorHandler(message: any, params: any) {
             stackTrace: error.stack,
             tags: ["global-handler"],
             env: {
-                os: getOS()
+                os: {
+                    type: getOS() as any,
+                    version: os.version()
+                }
             }
         })
     }

@@ -32,12 +32,16 @@ export function LoghammerWrapper(props: LoghammerWrapperProps) {
         if (message) {
             const envInfo = Bowser.getParser(window.navigator.userAgent);
             const os = envInfo.getOS().name?.toLowerCase()
+            const osVersion = `${envInfo.getOS().versionName} - ${envInfo.getOS().version}`
             const browser = envInfo.getBrowser()
             await createErrorLog(JSON.parse(JSON.stringify({
                 message: error.message,
                 stackTrace: error.stack,
                 env: {
-                    os: os || "other",
+                    os: {
+                        type: os || "other",
+                        version: osVersion
+                    },
                     browser: {
                         name: browser.name,
                         version: browser.version
