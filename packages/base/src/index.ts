@@ -47,7 +47,10 @@ export type LoghammerTrackLogProps = {
 }
 
 type Env = {
-    os?: "windows" | "macos" | "linux" | "other",
+    os?: {
+        type: "windows" | "macos" | "linux" | "android" | "ios" | "other",
+        version?: string
+    },
     cpu?: {
         model?: string,
         cores?: number,
