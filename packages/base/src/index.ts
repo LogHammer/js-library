@@ -70,7 +70,7 @@ export class Loghammer {
         this.options = options
     }
 
-    async createErrorLog(props: LoghammerErrorLogProps): Promise<{ status: boolean, logID?: string }> {
+    async createErrorLog(props: LoghammerErrorLogProps): Promise<{ status: boolean, data?: string }> {
         const headers = new Headers()
         headers.append("Content-Type", "application/json");
         headers?.append("Authorization", `Basic ${Base64.encode(this.options.clientId + ":" + this.options.clientSecret)}`);
