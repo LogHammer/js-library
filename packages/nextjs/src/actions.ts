@@ -31,27 +31,11 @@ function registerServerSideErrorTracking() {
             if (args.length > 0 && typeof args[0] === "string") {
                 const splitted = args[0].split("\n")
                 const errorMessage = splitted[0]?.includes("Error") ? splitted[0] : undefined
-                const envInfo = Bowser.getParser(window.navigator.userAgent);
-                const os = envInfo.getOS().name?.toLowerCase()
-                const osVersion = `${envInfo.getOS().versionName} - ${envInfo.getOS().version}`
-                const browser = envInfo.getBrowser()
                 if (errorMessage) {
                     await createErrorLog({
                         message: errorMessage,
                         stackTrace: args.join("\n"),
                         tags: ["server-side"],
-                        data: {
-                            env: {
-                                os: {
-                                    type: os || "other",
-                                    version: osVersion
-                                },
-                                browser: {
-                                    name: browser.name,
-                                    version: browser.version
-                                }
-                            },
-                        }
                     })
                 }
             }
