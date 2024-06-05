@@ -9,10 +9,16 @@ type LoghammerWrapperProps = {
 
 export function LoghammerWrapper(props: LoghammerWrapperProps) {
     useEffect(() => {
-        if (typeof window !== "undefined" && process.env.NODE_ENV === "production") {
+        // For the client side error catching, we need to make sure window is attached (which means we're working on browser, not on the server.)
+        if (typeof window !== "undefined") {
+            // Get the default console.error function
             const defaultBehaviour = console.error
+            
+            // Monkey-patch the global console.error function
             console.error = async (message: string, params: any) => {
                 await errorHandler(message, params)
+
+                // Call the default console.error function
                 defaultBehaviour(message, params)
             }
             return () => {
@@ -26,6 +32,12 @@ export function LoghammerWrapper(props: LoghammerWrapperProps) {
 
     async function errorHandler(message: any, params: any) {
         const error = Error(message)
+
+        /*
+            Sometimes, Next.js invokes an error multiple times when a single error occurs. 
+            In this situation, we need to ensure we pick up the correct error (human-readable, includes stack trace and error). 
+            Therefore, we need to ignore errors that start with 'An error occurred in the Server Components render.' as they are unusable.
+        */
         if(error.message.includes("An error occurred in the Server Components render.")){
             return true
         }

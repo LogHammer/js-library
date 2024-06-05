@@ -2,7 +2,9 @@ import { Base64 } from "js-base64";
 
 type LoghammerInitOptions = {
     clientId: string,
-    clientSecret: string
+    clientSecret: string,
+    // When dev mode is enabled, logs are not sent to the server.
+    devMode?: boolean
 }
 
 export type LoghammerErrorLogProps = {
@@ -74,6 +76,12 @@ export class Loghammer {
     }
 
     async createErrorLog(props: LoghammerErrorLogProps): Promise<{ status: boolean, data?: string }> {
+        if(this.options.devMode){
+            return {
+                status: true,
+                data: "mock-error-code (dev mode enabled)"
+            }
+        }
         const headers = new Headers()
         headers.append("Content-Type", "application/json");
         headers?.append("Authorization", `Basic ${Base64.encode(this.options.clientId + ":" + this.options.clientSecret)}`);
@@ -99,6 +107,9 @@ export class Loghammer {
     }
 
     async createInfoLog(props: LoghammerInfoLogProps) {
+        if(this.options.devMode){
+            return true
+        }
         const headers = new Headers()
         headers.append("Content-Type", "application/json");
         headers?.append("Authorization", `Basic ${Base64.encode(this.options.clientId + ":" + this.options.clientSecret)}`);
@@ -110,6 +121,9 @@ export class Loghammer {
     }
 
     async createTrackLog(props: LoghammerTrackLogProps) {
+        if(this.options.devMode){
+            return true
+        }
         const headers = new Headers()
         headers.append("Content-Type", "application/json");
         headers?.append("Authorization", `Basic ${Base64.encode(this.options.clientId + ":" + this.options.clientSecret)}`);

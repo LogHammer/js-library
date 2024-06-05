@@ -1,6 +1,6 @@
 {
   "name": "@loghammer/nodejs-sdk",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Loghammer nodejs sdk",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,7 +31,7 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "@loghammer/base-sdk": "^0.0.6",
+    "@loghammer/base-sdk": "^0.0.7",
     "js-base64": "^3.7.7"
   }
 }
