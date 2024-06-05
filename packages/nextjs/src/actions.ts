@@ -60,4 +60,4 @@ async function registerServerSideErrorTracking() {
     }
 }
 
-export { initLoghammer, createErrorLog, createInfoLog, createTrackLog }
+export { initLoghammer, createErrorLog, createInfoLog, createTrackLog, registerServerSideErrorTracking }
