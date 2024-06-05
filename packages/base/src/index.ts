@@ -1,6 +1,6 @@
 import { Base64 } from "js-base64";
 
-type LoghammerInitOptions = {
+export type LoghammerInitOptions = {
     clientId: string,
     clientSecret: string,
     // When dev mode is enabled, logs are not sent to the server.

@@ -1,13 +1,10 @@
 "use server"
 import * as Bowser from "bowser"
-import { Loghammer, LoghammerErrorLogProps, LoghammerInfoLogProps, LoghammerTrackLogProps } from "@loghammer/base-sdk";
+import { Loghammer, LoghammerErrorLogProps, LoghammerInfoLogProps, LoghammerTrackLogProps, LoghammerInitOptions } from "@loghammer/base-sdk";
 
 let instance: Loghammer | null = null
 
-function initLoghammer(props: {
-    clientId: string,
-    clientSecret: string
-}) {
+function initLoghammer(props: LoghammerInitOptions) {
     instance = new Loghammer(props)
 }
 

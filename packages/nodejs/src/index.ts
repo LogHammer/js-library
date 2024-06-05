@@ -1,12 +1,9 @@
-import { Loghammer, LoghammerErrorLogProps, LoghammerInfoLogProps, LoghammerTrackLogProps } from "@loghammer/base-sdk"
+import { Loghammer, LoghammerErrorLogProps, LoghammerInfoLogProps, LoghammerTrackLogProps, LoghammerInitOptions } from "@loghammer/base-sdk"
 import os, { version } from "os"
 
 let instance: Loghammer | null = null
 
-export function initLoghammer(props: {
-    clientId: string,
-    clientSecret: string
-}) {
+export function initLoghammer(props: LoghammerInitOptions) {
     instance = new Loghammer(props)
 }
 
