@@ -24,7 +24,7 @@ async function createTrackLog(props: LoghammerTrackLogProps) {
 }
 
 // This function monkey-patches console.error function to be able to catch error automatically 
-async function registerServerSideErrorTracking() {
+function registerServerSideErrorTracking() {
     if (process.env.NEXT_RUNTIME === 'nodejs') {
         const originalError = console.error
         console.error = async function (message, ...args) {
