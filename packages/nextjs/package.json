@@ -1,12 +1,12 @@
 {
   "name": "@loghammer/nextjs-sdk",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Loghammer nextjs sdk",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "./dist/index.mjs",
   "files": [
-    "dist/**"
+    "dist"
   ],
   "scripts": {
     "build": "rm -rf dist && tsc",

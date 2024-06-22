@@ -25,18 +25,26 @@ function registerServerSideErrorTracking() {
     if (process.env.NEXT_RUNTIME === 'nodejs') {
         const originalError = console.error
         console.error = async function (message, ...args) {
+            originalError(message, args);
             if (args.length > 0 && typeof args[0] === "string") {
-                const splitted = args[0].split("\n")
-                const errorMessage = splitted[0]?.includes("Error") ? splitted[0] : undefined
+                const splitted = args[0].split("\n");
+                const errorMessage = splitted[0]?.includes("Error") ? splitted[0] : undefined;
                 if (errorMessage) {
-                    await createErrorLog({
+                    createErrorLog({
                         message: errorMessage,
                         stackTrace: args.join("\n"),
                         tags: ["server-side"],
-                    })
+                    });
                 }
+            } else {
+                const err : Error = message as any
+                createErrorLog({
+                    message: err.message,
+                    stackTrace: err.stack,
+                    tags: ["server-side"],
+                });
             }
-            originalError(message, args)
+            
         };
     }
 }
