@@ -37,12 +37,14 @@ function registerServerSideErrorTracking() {
                     });
                 }
             } else {
-                const err: Error = message as any
-                createErrorLog({
-                    message: err.message,
-                    stackTrace: err.stack,
-                    tags: ["server-side"],
-                });
+                const err: Error | null = message as any
+                if (err) {
+                    createErrorLog({
+                        message: err.message,
+                        stackTrace: err.stack,
+                        tags: ["server-side"],
+                    });
+                }
             }
 
         };
