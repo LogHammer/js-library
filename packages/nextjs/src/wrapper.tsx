@@ -13,7 +13,7 @@ export function LoghammerWrapper(props: LoghammerWrapperProps) {
         if (typeof window !== "undefined") {
             // Get the default console.error function
             const defaultBehaviour = console.error
-            
+
             // Monkey-patch the global console.error function
             console.error = async (message: string, params: any) => {
                 await errorHandler(message, params)
@@ -34,11 +34,15 @@ export function LoghammerWrapper(props: LoghammerWrapperProps) {
         const error = Error(message)
 
         /*
-            Sometimes, Next.js invokes an error multiple times when a single error occurs. 
+            Sometimes, Next.js invokes an error multiple times when a single error occurs because of server/client component render purposes.
             In this situation, we need to ensure we pick up the correct error (human-readable, includes stack trace and error). 
-            Therefore, we need to ignore errors that start with 'An error occurred in the Server Components render.' as they are unusable.
+            Therefore, we need to ignore errors like 'An error occurred in the Server Components render.' as they are unusable.
         */
-        if(error.message.includes("An error occurred in the Server Components render.")){
+        const ignoredMessages: Array<string> = [
+            "An error occurred in the Server Components render.",
+            "Error: An error occurred in the Server Components render. The specific message is omitted in production builds to avoid leaking sensitive details. A digest property is included on this error instance which may provide additional details about the nature of the error."
+        ]
+        if (ignoredMessages.includes(error.message)) {
             return true
         }
         if (message) {

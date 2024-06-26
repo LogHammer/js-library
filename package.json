@@ -1,9 +1,11 @@
 {
   "name": "@loghammer-sdk/js",
   "private": true,
+  "scripts": {
+    "build": "turbo build"
+  },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
+    "@loghammer-sdk/typescript-config": "*",
     "prettier": "^3.2.5",
     "turbo": "latest"
   },
