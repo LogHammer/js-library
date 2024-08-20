@@ -1,5 +1,5 @@
 "use client"
-import { Fragment, ReactNode, useEffect, version } from "react"
+import { Fragment, ReactNode, useEffect } from "react"
 import { createErrorLog } from "./actions"
 import * as Bowser from "bowser"
 
@@ -48,7 +48,7 @@ export function LoghammerWrapper(props: LoghammerWrapperProps) {
         if (message) {
             const envInfo = Bowser.getParser(window.navigator.userAgent);
             const os = envInfo.getOS().name?.toLowerCase()
-            const osVersion = `${envInfo.getOS().versionName} - ${envInfo.getOS().version}`
+            const osVersion = `${envInfo.getOS().versionName ? `${envInfo.getOS().versionName} - ` : ""}${envInfo.getOS().version}`
             const browser = envInfo.getBrowser()
             await createErrorLog(JSON.parse(JSON.stringify({
                 message: error.message,
